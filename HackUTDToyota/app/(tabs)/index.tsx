@@ -1,8 +1,11 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
+import Dropdown1 from '@/components/dropdown1'; // Import the Dropdown component
+import Dropdown2 from '@/components/dropdown2'; // Import the Dropdown component
+import Dropdown3 from '@/components/dropdown3'; // Import the Dropdown component
+
 import ChartComponent from '@/components/ChartComponent';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+import ScrollbarOnly from '@/components/ScrollbarOnly'; // Import the ScrollbarOnly component
 
 const App: React.FC = () => {
   return (
@@ -10,21 +13,15 @@ const App: React.FC = () => {
       {/* StatusBar for better appearance */}
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
 
-      {/* Wrap ChartComponent inside ParallaxScrollView and pass the required props */}
-      <ParallaxScrollView
-        headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-        headerImage={
-          <IconSymbol
-            size={310}
-            color="#808080"
-            name="chevron.left.forwardslash.chevron.right"
-            style={styles.headerImage}
-          />
-        }
-      >
+      {/* Wrap Dropdown and ChartComponent inside ScrollbarOnly */}
+      <ScrollbarOnly>
+        {/* Dropdown above the chart */}
+        <Dropdown1/>
         <ChartComponent />
-        
-      </ParallaxScrollView>
+        <Dropdown2/>
+        <Dropdown3/>
+
+      </ScrollbarOnly>
     </SafeAreaView>
   );
 };
@@ -34,13 +31,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'center',    // Centers the content vertically
-    alignItems: 'center',        // Centers the content horizontally
-    padding: 16,                 // Adds padding around the container
-  },
-  headerImage: {
-    alignSelf: 'center', // Centers the icon horizontally in the header
-    marginTop: 20,       // Adjust this value to position the icon vertically
   },
 });
 
