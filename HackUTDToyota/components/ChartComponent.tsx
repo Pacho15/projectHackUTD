@@ -14,16 +14,14 @@ const ChartComponent: React.FC = () => {
         color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // Line 1 color (purple)
         strokeWidth: 2, // Line thickness
         withDots: true, // Show dots on data points
-        dotColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, // Dot color (white)
         dotRadius: 5, // Dot size
       },
       {
         // Second dataset (line 2)
-        data: [80, 150, 250, 350, 450, 550], // Y-values for line 2
-        color: (opacity = 1) => `rgba(255, 99, 132, ${opacity})`, // Line 2 color (red)
+        data: [190, 150, 250, 350, 450, 550], // Y-values for line 2
+        color: (opacity = 0) => `rgba(255, 99, 132, ${opacity})`, // Line 2 color (red)
         strokeWidth: 2, // Line thickness
         withDots: true, // Show dots on data points
-        dotColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, // Dot color (white)
         dotRadius: 5, // Dot size
       },
     ],
@@ -31,20 +29,32 @@ const ChartComponent: React.FC = () => {
   };
 
   const chartConfig = {
-    backgroundGradientTo: '#08130D',
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`, // Line color
-    style: { borderRadius: 16 },
+    style: { borderRadius: 1 },
+    
   };
 
   return (
     <View>
       <LineChart
         data={data}
-        width={screenWidth - 32}  // Adjust chart width to screen size
-        height={220}  // Chart height
-        chartConfig={chartConfig}
+        width={Dimensions.get('window').width} // from react-native
+        height={220}
+        chartConfig={{
+          color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+          labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+          style: {
+            borderRadius: 16,
+          },
+
+          useShadowColorFromDataset: true
+        }}
         bezier
-        style={{ borderRadius: 16 }}
+        style={{
+          marginVertical: 8,
+          borderRadius: 16,
+          
+        }}
+        
       />
     </View>
   );
