@@ -38,4 +38,5 @@ const ChartComponent: React.FC = () => {
   );
 };
 
+
 export default ChartComponent;
